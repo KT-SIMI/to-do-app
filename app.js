@@ -142,7 +142,6 @@ app.get("/", auth, async (req, res) => {
   const UserId = req.user.userId;
   const user = await User.findOne({ _id: UserId });
   const tasks = await Task.find({ user_id: UserId });
-  console.log(tasks)
   res.render("index.ejs", { user: user, tasks: tasks });
 });
 
