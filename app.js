@@ -37,11 +37,14 @@ const sessOption = {
   saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_STORE,
-    ttl: 14 * 24 * 60 * 60,
-    autoRemove: "native",
-    // db: 'myappsession',
-    // clear_interval: 3600
-  }),
+    ttl: 400 * 60 * 60,
+  // store: MongoStore.create({
+  //   mongoUrl: process.env.MONGO_STORE,
+  //   ttl: 14 * 24 * 60 * 60,
+  //   autoRemove: "native",
+  //   // db: 'myappsession',
+  //   // clear_interval: 3600
+   }),
 };
 
 // sessOption.cookie.secure = false;
@@ -78,7 +81,6 @@ app.get("/signup", (req, res) => {
   res.render("signup.ejs");
 });
 
-
 app.post("/signup", (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
@@ -100,7 +102,6 @@ app.post("/signup", (req, res) => {
   user.save();
   res.redirect("/login");
 });
-
 
 app.get("/login", (req, res) => {
   res.render("login.ejs");
@@ -137,7 +138,6 @@ app.post("/login", async (req, res) => {
   res.redirect("/");
 });
 
-
 app.get("/", auth, async (req, res) => {
   const UserId = req.user.userId;
   const user = await User.findOne({ _id: UserId });
@@ -160,6 +160,25 @@ app.post("/add-task", auth, async (req, res) => {
 
   res.redirect("/");
 });
+
+// app.post("/update-task/:taskId", auth, async (req, res) => {
+//   const taskId = req.params.taskId;
+//   await Task.updateOne(
+//     { _id: taskId },
+//     {
+//       isComplete: true,
+//     }
+//   );
+//   res.redirect("/");
+// });
+
+// app.post("/delete-task/:taskId", auth, async (req, res) => {
+//   const taskId = req.params.taskId;
+//   console.log(req.params)
+//   console.log(taskId);
+//   await Task.deleteOne({ _id: taskId });
+//   res.redirect("/");
+// });
 
 const port = 3003;
 

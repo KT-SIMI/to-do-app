@@ -73,12 +73,12 @@ form button:hover {
 } */
 a {
     color: blue;
-
+    text-decoration: none;
 }
 a:hover {
     color: red;
     text-decoration: none;
-}
+} 
 div h2 {
     text-align: center;
     margin: 10px auto 20px auto
@@ -134,7 +134,8 @@ li {
    
 }
 
-span p {
+span {
+    display: block;
     width: 100%;
     background: #fefefe;
     border-radius: 10px;
@@ -142,7 +143,26 @@ span p {
     color: #000;
     padding: 20px 20px;
     height: auto;
+    
 }
+
+span p {
+    display: inline;
+}
+
+span form {
+    display: inline;
+    margin-left: auto;
+    align-items: right
+}
+
+
+
+ /* {
+    right: 90%;
+    margin-left: auto;
+    text-decoration: none;
+} */
 
     </style>
 
@@ -172,7 +192,25 @@ span p {
                  <span class="<%= task.isComplete ? 'completed' : 'uncompleted' %>">
                     <p><%= task.name, %>
                         <br>
-                    <%= task.day %></p>
+                    <%= task.day %>
+                </p>
+                    <!-- <form action="/update-task/:taskId">
+                        <a href="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#444" class="bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                              </svg>
+                        </a>
+                    </form>
+                    <form action="/delete-task/:taskId">
+                        <a href="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#444" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                              </svg>
+                        </a>
+                    </form> -->
+                 
+
                 </span>
             </li>
         <% }); %>
