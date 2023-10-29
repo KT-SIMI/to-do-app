@@ -2,20 +2,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-// const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")
 const bcrypt = require("bcryptjs");
 const User = require("./models/userModel");
 const Task = require("./models/taskModel");
 const { auth } = require("./middleware/auth");
-// const cookieParser = require('cookie-parser')
+
 
 require("dotenv").config();
 
 (async () => {
   try {
-    mongoose.connect(process.env.MONGO_URL);
+    // mongoose.connect(process.env.MONGO_URL);
+    mongoose.connect("mongodb+srv://todo:xWCq7QwSQmMiRxpP@cluster0.agozhez.mongodb.net/?retryWrites=true&w=majority");
     console.log(`DB connected`);
   } catch (err) {
     console.log("DB error :::::::", err);
@@ -25,7 +25,7 @@ require("dotenv").config();
 
 const app = express();
 const sessOption = {
-  secret: process.env.SESSION_SECRET,
+  secret: "to-do-app5409",
   // proxy: true,
   cookie: {
     // sameSite: "none",
@@ -35,11 +35,8 @@ const sessOption = {
   },
   resave: false,
   saveUninitialized: false,
-  // store: MongoStore.create({
-  //   mongoUrl: process.env.MONGO_STORE,
-  //   ttl: 400 * 60 * 60,
   store: MongoStore.create({
-    mongoUrl: process.env.MONGO_STORE,
+    mongoUrl: "mongodb+srv://todo:xWCq7QwSQmMiRxpP@cluster0.agozhez.mongodb.net/?retryWrites=true&w=majority",
     ttl: 400 * 60 * 60,
     autoRemove: "native",
     // db: 'myappsession',
@@ -131,7 +128,8 @@ app.post("/login", async (req, res) => {
   }
 
   const payload = { userId: user._id };
-  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+  // const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    const token = jwt.sign(payload, "altschool-project@to-do--list-app::::2023", {
     expiresIn: "400h",
   });
   req.session.token = token;
