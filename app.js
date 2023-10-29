@@ -4,7 +4,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 // const bodyParser = require("body-parser");
 const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo")
 const bcrypt = require("bcryptjs");
 const User = require("./models/userModel");
 const Task = require("./models/taskModel");
@@ -35,14 +35,14 @@ const sessOption = {
   },
   resave: false,
   saveUninitialized: false,
+  // store: MongoStore.create({
+  //   mongoUrl: process.env.MONGO_STORE,
+  //   ttl: 400 * 60 * 60,
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_STORE,
     ttl: 400 * 60 * 60,
-  // store: MongoStore.create({
-  //   mongoUrl: process.env.MONGO_STORE,
-  //   ttl: 14 * 24 * 60 * 60,
-  //   autoRemove: "native",
-  //   // db: 'myappsession',
+    autoRemove: "native",
+    // db: 'myappsession',
   //   // clear_interval: 3600
    }),
 };
