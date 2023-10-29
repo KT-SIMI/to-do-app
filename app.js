@@ -14,13 +14,14 @@ require("dotenv").config();
 
 (async () => {
   try {
-    mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(process.env.MONGO_URL);
     console.log(`DB connected`);
   } catch (err) {
-    console.log("DB error :::::::", err);
+    console.error("DB error:", err);
     process.exit(1);
   }
 })();
+
 
 const app = express();
 const sessOption = {
