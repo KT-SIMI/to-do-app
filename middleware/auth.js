@@ -24,7 +24,8 @@ const authenticate = catchAsync(async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, "altschool-project@to-do--list-app::::2023");
     req.user = decoded;
 
     next();
