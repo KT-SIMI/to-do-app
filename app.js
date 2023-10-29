@@ -40,6 +40,7 @@ const sessOption = {
   //   ttl: 400 * 60 * 60,
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_STORE,
+    dbName: session,
     ttl: 400 * 60 * 60,
     autoRemove: "native",
     // db: 'myappsession',
