@@ -39,7 +39,7 @@ const sessOption = {
   //   mongoUrl: process.env.MONGO_STORE,
   //   ttl: 400 * 60 * 60,
   store: MongoStore.create({
-    mongoUrl: "mongodb+srv://todo:xWCq7QwSQmMiRxpP@cluster0.agozhez.mongodb.net/?retryWrites=true&w=majority", // process.env.MONGO_STORE,
+    mongoUrl: process.env.MONGO_STORE,
     ttl: 400 * 60 * 60,
     autoRemove: "native",
     // db: 'myappsession',
