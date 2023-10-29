@@ -14,8 +14,7 @@ require("dotenv").config();
 
 (async () => {
   try {
-    // mongoose.connect(process.env.MONGO_URL);
-    mongoose.connect("mongodb+srv://todo:xWCq7QwSQmMiRxpP@cluster0.agozhez.mongodb.net/?retryWrites=true&w=majority");
+    mongoose.connect(process.env.MONGO_URL);
     console.log(`DB connected`);
   } catch (err) {
     console.log("DB error :::::::", err);
@@ -25,7 +24,7 @@ require("dotenv").config();
 
 const app = express();
 const sessOption = {
-  secret: "to-do-app5409",
+  secret: process.env.SESSION_SECRET,
   // proxy: true,
   cookie: {
     // sameSite: "none",
@@ -36,7 +35,7 @@ const sessOption = {
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: "mongodb+srv://todo:xWCq7QwSQmMiRxpP@cluster0.agozhez.mongodb.net/?retryWrites=true&w=majority",
+    mongoUrl: process.env.MONGO_STORE,
     ttl: 400 * 60 * 60,
     autoRemove: "native",
     // db: 'myappsession',
@@ -128,8 +127,7 @@ app.post("/login", async (req, res) => {
   }
 
   const payload = { userId: user._id };
-  // const token = jwt.sign(payload, process.env.JWT_SECRET, {
-    const token = jwt.sign(payload, "altschool-project@to-do--list-app::::2023", {
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: "400h",
   });
   req.session.token = token;
