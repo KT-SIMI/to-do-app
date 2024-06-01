@@ -1,0 +1,118 @@
+<!-- login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+        }
+
+        h1 {
+            color: #000;
+            text-align: center;
+            margin: 20px auto;
+            align-items: center;
+            font-size: 36px;
+        }
+
+        div {
+            border: 2px solid #fff;
+            border-radius: 20px;
+            background: #ccc;
+            width: 50%;
+            height: auto;
+            margin: 30px auto;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 10%;
+        }
+
+        form {
+            margin: 20px auto;
+            align-items: center;
+        }
+
+        input {
+            border: 1px solid #eee;
+            background: #eee;
+            padding: 6px;
+            width: 100%;
+            height: 40px;
+            margin: 10px auto;
+            color: #121212;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 5px
+        }
+
+        input::placeholder {
+            color: #515151;
+        }
+
+        button {
+            background: #000;
+            color: #fff;
+            display: block;
+            width: 100%;
+            height: 40px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        button:hover {
+            background: #ccc;
+            color: #121212;
+        }
+
+        p {
+            margin: 10px auto 20px auto;
+        }
+
+        a {
+            color: blue;
+
+        }
+
+        a:hover {
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <h1>Login</h1>
+    <div>
+        <form method="post" action="/login" class="add-form">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <br>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <br>
+            <button type="submit" class="btn btn-block">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+    </div>
+</body>
+
+</html>

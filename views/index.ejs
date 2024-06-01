@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-do App</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+        }
+
+        h1 {
+            color: #000;
+            text-align: center;
+            margin: 20px auto;
+            align-items: center;
+            font-size: 36px;
+        }
+
+        div {
+            border: 2px solid #fff;
+            border-radius: 20px;
+            background: #ccc;
+            width: 50%;
+            height: auto;
+            margin: 30px auto;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 10%;
+        }
+
+        div form {
+            margin: 20px auto;
+            align-items: center;
+        }
+
+        input {
+            border: 1px solid #eee;
+            background: #eee;
+            padding: 6px;
+            width: 100%;
+            height: 40px;
+            margin: 10px auto;
+            color: #121212;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 5px
+        }
+
+        input::placeholder {
+            color: #515151;
+        }
+
+        form button {
+            background: #000;
+            color: #fff;
+            display: block;
+            width: 100%;
+            height: 40px;
+            margin: 10px 0 20px 0;
+            border-radius: 8px;
+        }
+
+        form button:hover {
+            background: #ccc;
+            color: #121212;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: red;
+            text-decoration: none;
+        }
+
+        div h2 {
+            text-align: center;
+            margin: 10px auto 20px auto
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px auto;
+            width: 50%;
+        }
+
+        header a {
+            border: 1px solid #fff;
+            padding: 12px 24px;
+            color: white;
+            text-decoration: none;
+            background: red;
+            border-radius: 10px;
+        }
+
+        header a:hover {
+            background: white;
+            color: red;
+            border: 1px solid red
+        }
+
+        header p {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: normal;
+            font-size: 20px
+        }
+
+        section {
+            background: #ccc;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            width: 60%;
+            margin: 20px auto;
+            height: auto;
+            padding: 10px 5%;
+        }
+
+        ul {
+            width: 100%;
+            margin: 20px 0;
+            list-style: none;
+        }
+
+        li {
+            list-style: none;
+            display: block;
+            padding: 20px 20px;
+            margin-bottom: 5px;
+
+        }
+
+        span {
+            display: block;
+            width: 100%;
+            background: #fefefe;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            color: #000;
+            padding: 20px 20px;
+            height: auto;
+
+        }
+
+        span p {
+            display: block;
+        }
+
+        span a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 30px;
+            color: white;
+            border-radius: 10px;
+
+        }
+
+        span a:hover {
+            opacity: 0.7;
+            color: white
+        }
+
+        .update {
+            background: #32cd32
+        }
+
+        .delete {
+            background: red;
+            margin-left: 20px
+        }
+
+        .completed {
+            background-color: #228c22;
+        }
+
+        /* {
+    right: 90%;
+    margin-left: auto;
+    text-decoration: none;
+} */
+    </style>
+
+</head>
+
+<body>
+    <h1>To-Do List</h1>
+    <header>
+        <p>Hello <%= user.firstname %>!</p>
+        <a href="/logout">Logout</a>
+    </header>
+    <div>
+        <h2>Add a New Task</h2>
+        <form action="/add-task" method="POST" class="add-form">
+            <label for="Task Name">Task</label>
+            <input type="text" name="taskName" placeholder="Task" required>
+            <label for="Date">Date and Time</label>
+            <input type="datetime-local" name="taskDay" required>
+            <button type="submit" class="btn btn-block">Add Task</button>
+        </form>
+    </div>
+
+    <h2>Your Tasks</h2>
+    <section>
+
+
+        <ul>
+            <% if (!tasks.length) { %>
+                <p>No tasks yet</p>
+                <% } else { %>
+                    <% tasks.forEach(function(task) { %>
+                        <li>
+                            <span class="<%= task.isComplete ? 'completed' : 'incompleted' %>">
+                                <p class="task">
+                                    <%= task.name, %>
+                                        <br>
+                                        <%= task.taskTime %>
+                                </p>
+
+                                <a href="/update-task/<%= task._id %>" class="update">
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="#fff"
+                                        class="bi bi-check2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                    </svg> -->
+                                     Complete
+                                </a>
+
+                                <a href="/delete-task/<%= task._id %>" class="delete">
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="#fff"
+                                        class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                        <path
+                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                    </svg>  -->
+                                    Delete
+                                </a>
+
+                            </span>
+                        </li>
+                        <% }); %>
+                            <% } %>
+        </ul>
+    </section>
+    <script src="/script.js"> </script>
+</body>
+
+</html>
