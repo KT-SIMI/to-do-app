@@ -145,7 +145,6 @@
         }
 
         li {
-            list-style: none;
             display: block;
             padding: 20px 20px;
             margin-bottom: 5px;
@@ -200,6 +199,86 @@
     margin-left: auto;
     text-decoration: none;
 } */
+
+        @media screen and (max-width: 960px) {
+            div {
+                width: 70%;
+
+            }
+
+            header {
+                width: 70%;
+            }
+
+            header a {
+                padding: 10px 20px
+            }
+
+            header p {
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            section {
+                width: 80%
+            }
+
+            ul {
+                margin: 15px 0
+            }
+
+            span {
+                padding: 18px 18px
+            }
+
+            span a {
+                padding: 10px 25px
+            }
+
+        }
+
+        @media screen and (max-width: 600px) {
+            div {
+                width: 80%
+            }
+
+            header {
+                width: 80%;
+            }
+
+            header p {
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            section {
+                width: 90%
+            }
+
+            ul {
+                margin: 15px 0
+            }
+
+            span {
+                padding: 18px 18px
+            }
+
+            span a {
+                padding: 10px 25px;
+                border-radius: 7px;
+            }
+
+            .delete {
+                margin-left: 12px
+            }
+
+        }
+
+        @media screen and (max-width: 480px) {
+            div {
+                width: 90%
+            }
+        }
     </style>
 
 </head>
@@ -244,7 +323,7 @@
                                         <path
                                             d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                                     </svg> -->
-                                     Complete
+                                    Complete
                                 </a>
 
                                 <a href="/delete-task/<%= task._id %>" class="delete">
