@@ -15,7 +15,7 @@ require("dotenv").config();
 
 (async () => {
   try {
-   mongoose.connect(process.env.MONGO_URL);
+    mongoose.connect(process.env.MONGO_URL);
     console.log(`DB connected`);
   } catch (err) {
     console.error("DB error:", err);
@@ -30,7 +30,7 @@ const sessOption = {
   cookie: {
     secure: false,
     httpOnly: true,
-    maxAge: 72 * 60 * 60 * 1000, 
+    maxAge: 72 * 60 * 60 * 1000,
   },
   resave: false,
   saveUninitialized: false,
@@ -38,13 +38,13 @@ const sessOption = {
     mongoUrl: process.env.MONGO_STORE,
     ttl: 400 * 60 * 60,
     autoRemove: "native",
-   }),
+  }),
 };
 
 const corsOptions = {
   origin: ["http://localhost:4008"],
   credentials: true,
-  optionsSuccessStatus: 200, 
+  optionsSuccessStatus: 200,
 };
 
 app.set("view engine", "ejs");
@@ -83,6 +83,8 @@ app.post("/signup", (req, res) => {
     password,
     parseInt(process.env.PWD_HASH_LENGTH)
   );
+
+  
   const user = new User({
     firstname: firstname,
     lastname: lastname,
@@ -134,10 +136,10 @@ app.get("/", auth, async (req, res) => {
   const UserId = req.user.userId;
   const user = await User.findOne({ _id: UserId });
   const tasks = await Task.find({ user_id: UserId });
-  res.render("index.ejs", { 
-    user: user, 
+  res.render("index.ejs", {
+    user: user,
     tasks: tasks
-   });
+  });
 });
 
 app.post("/add-task", auth, async (req, res) => {
@@ -154,10 +156,10 @@ app.post("/add-task", auth, async (req, res) => {
 
   const ordinalSuffix = (n) => {
     const s = ["th", "st", "nd", "rd"],
-          v = n % 100;
+      v = n % 100;
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
   };
-  
+
   const formattedDate = `${ordinalSuffix(day)} of ${month}, ${year} at ${hours}:${minutes}`;
 
   const task = new Task({
@@ -186,7 +188,7 @@ app.get("/update-task/:taskId", auth, async (req, res) => {
     await Task.updateOne({ _id: taskId }, {
       isComplete: true
     })
-  
+
   } else {
     await Task.updateOne({ _id: taskId }, {
       isComplete: false
